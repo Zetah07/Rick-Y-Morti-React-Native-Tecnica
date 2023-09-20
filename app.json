@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "rickYMortiNative",
+    "slug": "rickYMortiNative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "rickYMortiNative"
+}
