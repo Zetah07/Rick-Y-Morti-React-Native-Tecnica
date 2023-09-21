@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { getCharacterById } from '../api';
 
 const CharacterDetailScreen = ({ route }) => {
   const [character, setCharacter] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const fetchCharacter = async () => {
@@ -16,22 +14,32 @@ const CharacterDetailScreen = ({ route }) => {
     fetchCharacter();
   }, []);
 
-  const handleFavoritePress = () => {
-    setIsFavorite(!isFavorite);
-  };
 
   if (!character) {
-    return null;
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.noFound}>No character found.</Text>
+          <Image 
+            source={require('../../public/images/logo.png')} 
+            style={styles.imageNoFound} />
+        </View>
+      </View>
+    ) 
   }
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.favoriteButtonContainer} onPress={handleFavoritePress}>
-        <Ionicons name={isFavorite ? 'heart' : 'heart-outline'} size={24} color={isFavorite ? '#FF4136' : '#FFFFFF'} />
-      </TouchableOpacity>
       <View style={styles.card}>
         <View style={styles.cardImageContainer}>
-          <Image source={{ uri: character.image }} style={styles.cardImage} />
+        <Image 
+          source={{ uri: character.image }} 
+          style={[styles.cardImage, 
+            { shadowColor: '#11B0C8', 
+              shadowOffset: { width: 7, height: 7 }, 
+              shadowRadius: 4 }
+          ]}
+        />
         </View>
         <View style={styles.cardInfoContainer}>
           <Text style={styles.characterName}>{character.name}</Text>
@@ -59,14 +67,16 @@ const CharacterDetailScreen = ({ route }) => {
               <Text style={styles.info}>{character.gender}</Text>
             </View>
           </View>
-          <View style={styles.infoRow}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Origen:</Text>
+          {character.origin && (
+            <View style={styles.infoRow}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>Origen:</Text>
+              </View>
+              <View style={styles.infoContainer}>
+                <Text style={styles.info}>{character.origin.name}</Text>
+              </View>
             </View>
-            <View style={styles.infoContainer}>
-              <Text style={styles.info}>{character.origin.name}</Text>
-            </View>
-          </View>
+          )}
         </View>
       </View>
     </View>
@@ -92,6 +102,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '50%',
     overflow: 'hidden',
+    borderRadius: 70,
   },
   cardImage: {
     width: '100%',
@@ -136,14 +147,17 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     textAlign: 'right',
   },
-  favoriteButtonContainer: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  noFound: {
+    color: '#11B0C8',
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  imageNoFound: {
+
     borderRadius: 50,
-    padding: 10,
-    zIndex: 5,
+    marginBottom: 8,
   },
 });
 
