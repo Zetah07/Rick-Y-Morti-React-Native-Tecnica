@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { getCharacterById } from '../api';
+import LoadingComponent from './LoadingComponent';
 
 const Search = ({ onSearchResults }) => {
   const [searchText, setSearchText] = useState('');
@@ -30,7 +31,7 @@ const Search = ({ onSearchResults }) => {
           keyboardType="numeric"
         />
       </View>
-      {isSearching && <ActivityIndicator />}
+      {isSearching ? <LoadingComponent/> : null}
     </View>
   );
 };
