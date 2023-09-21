@@ -2,26 +2,17 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-interface CharacterCardProps {
-  character: {
-    id: number;
-    image: string;
-    name: string;
-    isFavorite?: boolean;
-  };
-  onPress: () => void;
-  onFavoritePress: () => void;
-}
+const CharacterCard = ({ character, onPress, favorites, onFavoritePress }) => {
+  const isFavorite = favorites.includes(character.id);
 
-const CharacterCard: React.FC<CharacterCardProps> = ({ character, onPress, onFavoritePress }) => {
   return (
     <TouchableOpacity style={styles.characterCard} onPress={onPress}>
       <View style={styles.favoriteButtonContainer}>
         <TouchableOpacity onPress={onFavoritePress}>
           <Ionicons
-            name={character.isFavorite ? 'heart' : 'heart-outline'}
+            name={isFavorite ? 'heart' : 'heart-outline'}
             size={24}
-            color={character.isFavorite ? '#FF6B6B' : '#FFFFFF'}
+            color={isFavorite ? '#FF6B6B' : '#FFFFFF'}
           />
         </TouchableOpacity>
       </View>
@@ -38,12 +29,15 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 8,
     alignItems: 'center',
+    justifyContent: 'center',
+    width: 150,
+    height: 150,
     position: 'relative',
   },
   favoriteButtonContainer: {
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 3,
+    right: 3,
   },
   characterImage: {
     width: 100,
@@ -55,6 +49,7 @@ const styles = StyleSheet.create({
     color: '#11B0C8',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 

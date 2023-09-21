@@ -1,19 +1,14 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-
-
-const Favorites: React.FC = () => {
-
-
+const Search =() => {
   return (
     <View>
-      <Text> Favorites </Text>
+      <Text> Search </Text>
     </View>
     
   );
 
 }
 
-
-export default Favorites;
+export default Search;
