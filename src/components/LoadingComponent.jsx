@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, Animated } from 'react-native';
 
-import logo from '../../public/images/logo.png';
+import logo from '../../assets/logo.png';
 
 const LoadingComponent = () => {
   const pulseAnimation = new Animated.Value(1);

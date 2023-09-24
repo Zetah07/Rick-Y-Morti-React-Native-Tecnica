@@ -21,7 +21,7 @@ const CharacterDetailScreen = ({ route }) => {
         <View>
           <Text style={styles.noFound}>No character found.</Text>
           <Image 
-            source={require('../../public/images/logo.png')} 
+            source={require('../../assets/logo.png')} 
             style={styles.imageNoFound} />
         </View>
       </View>

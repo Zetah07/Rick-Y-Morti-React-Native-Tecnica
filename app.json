@@ -1,11 +1,36 @@
 {
   "expo": {
-    "name": "rickYMortiNative",
-    "slug": "rickYMortiNative",
+    "name": "rick-y-morty-native",
+    "slug": "rick-y-morty-native",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
-  },
-  "name": "rickYMortiNative"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.zetahdev.rickymortynative"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d0200d00-b639-4c03-acc1-914b9fdd2dd4"
+      }
+    }
+  }
 }
